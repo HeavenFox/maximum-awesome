@@ -132,17 +132,6 @@ namespace :install do
     unless app? 'MacVim'
       brew_cask_install 'macvim'
     end
-
-    bin_vim = File.expand_path('~/bin/vim')
-    FileUtils.mkdir_p(File.dirname(bin_vim))
-    unless File.executable?(bin_vim)
-      File.open(bin_vim, 'w', 0744) do |io|
-        io << <<-SHELL
-#!/bin/bash
-exec /Applications/MacVim.app/Contents/MacOS/Vim "$@"
-        SHELL
-      end
-    end
   end
 
   desc 'Install Vundle'
